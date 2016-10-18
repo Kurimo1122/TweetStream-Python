@@ -43,7 +43,7 @@ def twitter_auth():
 		# Save the request_token which will be used after authentication
 		session['request_token'] = auth.request_token
 	
-	except tweepy.TweepError, e:
+	except (tweepy.TweepError, e):
 		logging.error(str(e))
 	
 	return redirect(redirect_url)
@@ -64,7 +64,7 @@ def user_timeline():
 	auth.request_token = token
 	try:
 		auth.get_access_token(verifier)
-	except tweepy.TweepError, e:
+	except (tweepy.TweepError, e):
 		logging.error(str(e))
 		return {}
 
